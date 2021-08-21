@@ -1,0 +1,21 @@
+version: "1"
+services:
+  employee-jdbc:
+    image: read-marketing-preference
+    ports:
+      - "8080:8080"
+    networks:
+      - read-marketing-preference-mysql
+    depends_on:
+      - mysqldb
+ 
+  mysqldb:
+    image: mysql:8
+    networks:
+      - read-marketing-preference-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bootdb  
+
+networks:
+  read-marketing-preference-mysql:
